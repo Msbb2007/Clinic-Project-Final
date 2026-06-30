@@ -50,6 +50,41 @@ public class LoginView {
                         "-fx-font-size: 24px;" +
                         "-fx-font-weight: bold;"
         );
+        welcome.setCache(true);
+        welcome.setCacheHint(CacheHint.QUALITY);
+        welcome.setTextOverrun(OverrunStyle.CLIP);
+        welcome.setFont(faFont);
+        welcome.setCursor(Cursor.HAND);
+
+        welcome.setOnMouseEntered(event -> {
+            Font faFont2 = Font.loadFont("file:Fonts/Vazirmatn-ExtraBold.ttf", 17);
+            welcome.setFont(faFont2);
+            TranslateTransition moveUp = new TranslateTransition(Duration.millis(50250), welcome);
+            moveUp.setToY(-4);
+
+            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(50), welcome);
+            scaleUp.setToX(1.05);
+            scaleUp.setToY(1.05);
+
+            moveUp.play();
+            scaleUp.play();
+        });
+
+        welcome.setOnMouseExited(event -> {
+            Font faFont2 = Font.loadFont("file:Fonts/Vazirmatn-ExtraBold.ttf", 17);
+            welcome.setFont(faFont2);
+
+            TranslateTransition moveDown = new TranslateTransition(Duration.millis(150), welcome);
+            moveDown.setToY(0);
+
+            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(150), welcome);
+            scaleDown.setToX(1);
+            scaleDown.setToY(1);
+
+            moveDown.play();
+            scaleDown.play();
+        });
+
 
         Label subtitle = new Label("Clinic Management System");
         subtitle.setStyle(
