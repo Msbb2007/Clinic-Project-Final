@@ -71,7 +71,7 @@ public class LoginView {
         );
 
         TextField usernameField = new TextField();
-        usernameField.setPromptText("Username");
+        usernameField.setPromptText("نام کاربری");
         usernameField.setPrefHeight(35);
         usernameField.setStyle(
                 "-fx-background-color: #F8FAFC;" +
