@@ -218,6 +218,7 @@ public class LoginView {
         Button loginButton = new Button("Login");
         loginButton.setPrefWidth(200);
         loginButton.setPrefHeight(35);
+        loginButton.setFont(logFont2);
 
         loginButton.setStyle(
                 "-fx-background-color: #2F80ED;" +
