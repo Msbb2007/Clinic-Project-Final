@@ -187,6 +187,34 @@ public class LoginView {
                         "-fx-font-size: 13px;"
         );
 
+        passwordField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                passwordField.setStyle(
+                        "-fx-background-color: #FFFFFF;" +
+                                "-fx-background-radius: 10;" +
+                                "-fx-border-color: #3A7BD5;" +
+                                "-fx-border-radius: 10;" +
+                                "-fx-padding: 12 15 12 15;" +
+                                "-fx-prompt-text-fill: #CBD5E1;" +
+                                "-fx-font-family: 'Vazirmatn';" +
+                                "-fx-font-size: 13px;" +
+                                "-fx-effect: dropshadow(three-pass-box, rgba(58, 123, 213, 0.15), 10, 0, 0, 0);"
+                );
+            } else {
+                passwordField.setStyle(
+                        "-fx-background-color: #F8FAFC;" +
+                                "-fx-background-radius: 10;" +
+                                "-fx-border-color: #E2E8F0;" +
+                                "-fx-border-radius: 10;" +
+                                "-fx-padding: 12 15 12 15;" +
+                                "-fx-prompt-text-fill: #94A3B8;" +
+                                "-fx-font-family: 'Vazirmatn';" +
+                                "-fx-font-size: 13px;"
+                );
+            }
+        });
+
+        Font logFont2 = Font.loadFont("file:Fonts/Merienda-Black.ttf",14);
         Button loginButton = new Button("Login");
         loginButton.setPrefWidth(200);
         loginButton.setPrefHeight(35);
