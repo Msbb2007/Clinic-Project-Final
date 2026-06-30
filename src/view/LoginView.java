@@ -56,6 +56,32 @@ public class LoginView {
                 "-fx-text-fill: white;" +
                         "-fx-font-size: 14px;"
         );
+        subtitle.setFont(enFont);
+        subtitle.setCursor(Cursor.HAND);
+        subtitle.setOnMouseEntered(event -> {
+            TranslateTransition moveUp = new TranslateTransition(Duration.millis(50250), subtitle);
+            moveUp.setToY(-4);
+
+            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(50), subtitle);
+            scaleUp.setToX(1.05);
+            scaleUp.setToY(1.05);
+
+            moveUp.play();
+            scaleUp.play();
+        });
+
+        subtitle.setOnMouseExited(event -> {
+
+            TranslateTransition moveDown = new TranslateTransition(Duration.millis(70), subtitle);
+            moveDown.setToY(0);
+
+            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(70), subtitle);
+            scaleDown.setToX(1);
+            scaleDown.setToY(1);
+
+            moveDown.play();
+            scaleDown.play();
+        });
 
         leftPanel.getChildren().addAll(welcome, subtitle);
 
