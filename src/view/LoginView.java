@@ -174,7 +174,7 @@ public class LoginView {
 
 
         PasswordField passwordField = new PasswordField();
-        passwordField.setPromptText("Password");
+        passwordField.setPromptText("رمز عبور");
         passwordField.setPrefHeight(35);
         passwordField.setStyle(
                 "-fx-background-color: #F8FAFC;" +
