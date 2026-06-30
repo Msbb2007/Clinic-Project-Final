@@ -259,16 +259,14 @@ public class LoginView {
                         "-fx-font-weight: bold;" +
                         "-fx-cursor: hand;"
         ));
-        registerLink.setOnMouseExited(e -> {
-            registerLink.setStyle(
-                    "-fx-text-fill: #1E88E5;" +
-                            "-fx-underline: false;" +
-                            "-fx-font-size: 13px;" +
-                            "-fx-font-family: 'Vazirmatn';" +
-                            "-fx-font-weight: normal;"
-            );
-        });
-        
+        registerLink.setOnMouseExited(e -> registerLink.setStyle(
+                "-fx-text-fill: #1E88E5;" +
+                        "-fx-underline: false;" +
+                        "-fx-font-size: 13px;" +
+                        "-fx-font-family: 'Vazirmatn';" +
+                        "-fx-font-weight: normal;"
+        ));
+
 
         registerLink.setOnAction(e -> {
 
