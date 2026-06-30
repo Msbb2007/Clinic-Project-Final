@@ -11,7 +11,7 @@ import util.SceneManager;
 
 public class LoginView {
 
-    private StackPane root;
+    private final StackPane root;
 
     public LoginView() {
 
