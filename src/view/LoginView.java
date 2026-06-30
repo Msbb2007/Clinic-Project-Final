@@ -41,7 +41,10 @@ public class LoginView {
                         "-fx-background-radius: 12 0 0 12;"
         );
 
-        Label welcome = new Label("Welcome Back!");
+        Font faFont = Font.loadFont("file:Fonts/Vazirmatn-ExtraBold.ttf", 18);
+        Font enFont = Font.loadFont("file:Fonts/Merienda-Regular.ttf",14);
+
+        Label welcome = new Label("به سامانه نوبت دهی کلینیک خوش آمدید");
         welcome.setStyle(
                 "-fx-text-fill: white;" +
                         "-fx-font-size: 24px;" +
