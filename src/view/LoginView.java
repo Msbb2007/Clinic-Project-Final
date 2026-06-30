@@ -176,6 +176,16 @@ public class LoginView {
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.setPrefHeight(35);
+        passwordField.setStyle(
+                "-fx-background-color: #F8FAFC;" +
+                        "-fx-background-radius: 10;" +
+                        "-fx-border-color: #E2E8F0;" +
+                        "-fx-border-radius: 10;" +
+                        "-fx-padding: 12 15 12 15;" +
+                        "-fx-prompt-text-fill: #94A3B8;" +
+                        "-fx-font-family: 'Vazirmatn';" +
+                        "-fx-font-size: 13px;"
+        );
 
         Button loginButton = new Button("Login");
         loginButton.setPrefWidth(200);
