@@ -244,6 +244,34 @@ public class LoginView {
         );
 
         Hyperlink registerLink = new Hyperlink("Create account");
+        registerLink.setStyle(
+                "-fx-text-fill: #1E88E5;" +
+                        "-fx-underline: false;" +
+                        "-fx-font-size: 13px;" +
+                        "-fx-font-family: 'Vazirmatn';" +
+                        "-fx-font-weight: normal;"
+        );
+        registerLink.setOnMouseEntered(e -> {
+            registerLink.setStyle(
+                    "-fx-text-fill: #0D6EFD;" +
+                            "-fx-underline: true;" +
+                            "-fx-font-size: 13.5px;" +
+                            "-fx-font-family: 'Vazirmatn';" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-cursor: hand;"
+            );
+        });
+        registerLink.setOnMouseExited(e -> {
+            registerLink.setStyle(
+                    "-fx-text-fill: #1E88E5;" +
+                            "-fx-underline: false;" +
+                            "-fx-font-size: 13px;" +
+                            "-fx-font-family: 'Vazirmatn';" +
+                            "-fx-font-weight: normal;"
+            );
+        });
+        
+
         registerLink.setOnAction(e -> {
 
             RegisterView registerView = new RegisterView();
