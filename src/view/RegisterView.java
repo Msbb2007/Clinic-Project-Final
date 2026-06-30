@@ -11,7 +11,7 @@ import util.SceneManager;
 
 public class RegisterView {
 
-    private StackPane root;
+    private final StackPane root;
 
     public RegisterView() {
 
