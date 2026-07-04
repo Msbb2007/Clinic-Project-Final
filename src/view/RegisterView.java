@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import service.RegisterResult;
 import util.SceneManager;
 
 public class RegisterView {
@@ -126,7 +127,7 @@ public class RegisterView {
         leftPanel.getChildren().addAll(welcome, subtitle);
 
         // RIGHT PANEL
-        VBox formPanel = new VBox(18);
+        VBox formPanel = new VBox(16);
         formPanel.setAlignment(Pos.CENTER);
         formPanel.setPadding(new Insets(40));
         formPanel.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
@@ -275,9 +276,44 @@ public class RegisterView {
         });
 
         ComboBox<String> roleBox = new ComboBox<>();
-        roleBox.getItems().addAll("admin", "doctor", "patient");
+        roleBox.getItems().addAll("admin","patient");
         roleBox.setPromptText("Select Role");
+        roleBox.setValue("patient");
+        roleBox.setMaxWidth(Double.MAX_VALUE);
         roleBox.setPrefHeight(35);
+        roleBox.setStyle(
+                "-fx-background-color: #F8FAFC;" +
+                        "-fx-background-radius: 10;" +
+                        "-fx-border-color: #E2E8F0;" +
+                        "-fx-border-radius: 10;" +
+                        "-fx-padding: 6 10 6 10;" +
+                        "-fx-font-family: 'Vazirmatn';" +
+                        "-fx-font-size: 13px;"
+        );
+        TextField adminCodeField = new TextField();
+        adminCodeField.setPromptText("کد امنیتی ادمین");
+        adminCodeField.setMaxWidth(Double.MAX_VALUE);
+        adminCodeField.setPrefHeight(35);
+        adminCodeField.setVisible(false);
+        adminCodeField.setManaged(false);
+        adminCodeField.setStyle(
+                "-fx-background-color: #F8FAFC;" +
+                        "-fx-background-radius: 10;" +
+                        "-fx-border-color: #E2E8F0;" +
+                        "-fx-border-radius: 10;" +
+                        "-fx-padding: 12 15 12 15;" +
+                        "-fx-prompt-text-fill: #94A3B8;" +
+                        "-fx-font-family: 'Vazirmatn';" +
+                        "-fx-font-size: 13px;"
+        );
+
+        roleBox.setOnAction(e -> {
+            boolean isAdmin = "admin".equals(roleBox.getValue());
+            adminCodeField.setVisible(isAdmin);
+            adminCodeField.setManaged(isAdmin);
+            if (!isAdmin) adminCodeField.clear();
+        });
+
 
         Font logFont2 = Font.loadFont("file:Fonts/Merienda-Black.ttf",14);
         Button registerButton = new Button("Register");
@@ -316,21 +352,6 @@ public class RegisterView {
                         "-fx-font-family: 'Vazirmatn';" +
                         "-fx-font-weight: normal;"
         );
-        loginLink.setOnMouseEntered(e -> loginLink.setStyle(
-                "-fx-text-fill: #2F80ED;" +
-                        "-fx-underline: true;" +
-                        "-fx-font-size: 13.5px;" +
-                        "-fx-font-family: 'Vazirmatn';" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-cursor: hand;"
-        ));
-        loginLink.setOnMouseExited(e -> loginLink.setStyle(
-                "-fx-text-fill: #1E88E5;" +
-                        "-fx-underline: false;" +
-                        "-fx-font-size: 13px;" +
-                        "-fx-font-family: 'Vazirmatn';" +
-                        "-fx-font-weight: normal;"
-        ));
         loginLink.setStyle(
                 "-fx-text-fill: #1E88E5;" +
                         "-fx-underline: true;" +
@@ -347,13 +368,40 @@ public class RegisterView {
 
         });
 
+        Font fafont2 = Font.loadFont("file:Fonts/Vazirmatn-ExtraBold.ttf",13);
+        Hyperlink doctorLink = new Hyperlink("ثبت نام به عنوان متخصص");
+        doctorLink.setFont(fafont2);
+        doctorLink.setOnAction(e->{
+            RegisterDoctorView docView = new RegisterDoctorView();
+            Scene scene = new Scene(docView.getView(), 900, 500);
+            SceneManager.switchScene(scene);
+        });
+
         Label message = new Label();
 
-        RegisterController controller =
-                new RegisterController(usernameField, passwordField, roleBox, message);
+
+        RegisterController controller = new RegisterController();
 
         registerButton.setOnAction(e -> {
-            controller.handleRegister();
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            String role = roleBox.getValue();
+            String adminCode = adminCodeField.getText();
+
+            RegisterResult result = controller.handleRegister(
+                    username,
+                    password,
+                    role,
+                    adminCode
+            );
+
+            message.setText(result.getMessage());
+
+            if (result.isSuccess()) {
+                message.setStyle("-fx-text-fill: green;");
+            } else {
+                message.setStyle("-fx-text-fill: red;");
+            }
         });
 
         formPanel.getChildren().addAll(
@@ -363,8 +411,10 @@ public class RegisterView {
                 visiblePasswordField,
                 showPassword,
                 roleBox,
+                adminCodeField,
                 registerButton,
                 loginLink,
+                doctorLink,
                 message
         );
 

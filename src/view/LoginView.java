@@ -335,7 +335,7 @@ public class LoginView {
         registerLink.setOnAction(e -> {
 
             RegisterView registerView = new RegisterView();
-            Scene scene = new Scene(registerView.getView(), 900, 500);
+            Scene scene = new Scene(registerView.getView(), 900, 600);
 
             SceneManager.switchScene(scene);
         });
